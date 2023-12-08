@@ -1,9 +1,12 @@
 # First-Flutter-App
 
-Este é o meu primeiro projeto Flutter, uma aplicação simples para somar dois valores. A aplicação foi desenvolvida como parte do aprendizado inicial com o framework Flutter.
+Este é o meu primeiro projeto Flutter feito no FlutLab.io, uma aplicação simples para fazer operações matemáticas com dois valores. A aplicação foi desenvolvida como parte do aprendizado inicial com o framework Flutter.
 
 # Funcionalidades
 - Adição de dois valores inseridos pelo usuário.
+- Subtração
+- Multiplicação
+- Divição 
 - Exibição do resultado da soma.
 
 # Tecnologias Utilizadas
