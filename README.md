@@ -10,7 +10,7 @@ Este é o meu primeiro projeto Flutter, uma aplicação simples para somar dois 
 - Flutter
 - Dart
 
-#Como Executar o Projeto
+# Como Executar o Projeto
 Certifique-se de ter o Flutter instalado em sua máquina. Caso contrário, siga as instruções de instalação no site oficial do Flutter.
 
 # Clone este repositório:
