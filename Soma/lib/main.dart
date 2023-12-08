@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
+import './operacoes/Soma.dart';
+import './operacoes/Subtracao.dart';
+import './operacoes/Multiplicar.dart';
+import './operacoes/Dividir.dart';
 
-void main() => runApp(SomaApp());
+void main() => runApp(Operacoes());
 
-class SomaApp extends StatefulWidget {
+class Operacoes extends StatefulWidget {
   @override
-  _SomaAppState createState() => _SomaAppState();
+  _OperacoesState createState() => _OperacoesState();
 }
 
-class _SomaAppState extends State<SomaApp> {
-  final TextEditingController controller1 = TextEditingController();
-  final TextEditingController controller2 = TextEditingController();
+class _OperacoesState extends State<Operacoes> {
   double resultado = 0;
 
-  double somarValores() {
-    double valor1 = double.tryParse(controller1.text) ?? 0;
-    double valor2 = double.tryParse(controller2.text) ?? 0;
-    return valor1 + valor2;
+  final TextEditingController controller1 = TextEditingController();
+  final TextEditingController controller2 = TextEditingController();
+
+  Soma soma = Soma();
+  Subtracao subtracao = Subtracao();
+  Multiplicar multiplicar = Multiplicar();
+  Dividir dividir = Dividir();
+
+  String getController1() {
+    return controller1.text;
+  }
+
+  String getController2() {
+    return controller2.text;
   }
 
   @override
@@ -23,7 +35,7 @@ class _SomaAppState extends State<SomaApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Somar"),
+          title: Text("Funções matemáticas"),
         ),
         body: Center(
           child: Column(
@@ -75,15 +87,77 @@ class _SomaAppState extends State<SomaApp> {
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.green, textStyle: TextStyle(fontSize: 40)),
-                onPressed: () {
-                  setState(() {
-                    resultado = somarValores();
-                  });
-                },
-                child: Text("Somar"),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                              textStyle: TextStyle(fontSize: 25),
+                              minimumSize: Size(150, 0)),
+                          onPressed: () {
+                            setState(() {
+                              resultado =
+                                  soma.somarValores(controller1, controller2);
+                            });
+                          },
+                          child: Text("Somar"),
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,
+                            textStyle: TextStyle(fontSize: 25),
+                            minimumSize: Size(150, 0),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              resultado = subtracao.subtrairValores(
+                                  controller1, controller2);
+                            });
+                          },
+                          child: Text("Subtrair"),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 200),
+                    Column(
+                      children: <Widget>[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,
+                            textStyle: TextStyle(fontSize: 25),
+                            minimumSize: Size(150, 0),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              resultado = dividir.divirValores(
+                                  controller1, controller2);
+                            });
+                          },
+                          child: Text("Dividir"),
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                              textStyle: TextStyle(fontSize: 25),
+                              minimumSize: Size(150, 0)),
+                          onPressed: () {
+                            setState(() {
+                              resultado = multiplicar.multiplicarValores(
+                                  controller1, controller2);
+                            });
+                          },
+                          child: Text("Multiplicar"),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               Text(
                 "A soma dos valores é: $resultado",
